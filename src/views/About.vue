@@ -9,7 +9,6 @@
  <el-form-item label="用户密码" prop="pass">
     <el-input type="password" v-model="ruleForm.pass" :show-password="true" ></el-input>
   </el-form-item>
-  
   <el-form-item>
     <el-button type="primary" style="width:100%"  @click="submitForm('ruleForm')">提交</el-button>
   </el-form-item>
