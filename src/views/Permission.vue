@@ -1,9 +1,14 @@
 
 <template>
  <div>
-      <div style="margin-top: 20px">
+      <div class="btn_box" style="margin-top: 20px">
         <el-button type="success">批量授权</el-button>
         <el-button type="danger">批量注销</el-button>
+      <el-input
+        class="find_input"
+        placeholder="请输入内容"
+        v-model="input2">
+      </el-input>
   </div>
       <el-table
     ref="multipleTable"
@@ -35,7 +40,17 @@
       </template>
     </el-table-column>
   </el-table>
- 
+   <div class="block">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage4"
+      :page-sizes="[10, 20, 30, 40]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="40">
+    </el-pagination>
+  </div>
  </div>
 </template>
 
@@ -106,3 +121,16 @@
     }
   }
 </script>
+<style lang="less" scoped>
+.inline-input{
+  margin-left :30px;
+}
+.btn_box{
+  display: flex;
+  justify-content: start;
+}
+.find_input{
+  margin-left: 10px;
+  width: 180px;
+}
+</style>

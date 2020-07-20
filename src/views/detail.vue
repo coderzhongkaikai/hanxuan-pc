@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div class="btn_box" style="margin-top: 20px">
-      <el-button type="danger">批量删除</el-button>
-      <el-input class="find_input" placeholder="请输入内容" v-model="input2">
-      </el-input>
+      <div class="btn_box" style="margin-top: 20px">
+           团队详情页
     </div>
     <el-table
       ref="multipleTable"
@@ -20,32 +18,19 @@
         :prop="item.prop"
       >
       </el-table-column>
-
-
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <router-link to="/hanxuan/detail">
-          <el-button
-            size="mini"
-            type="warning"
-            @click="handleEdit(scope.$index, scope.row)"
-            >查看信息</el-button
-          >
-          </router-link>
+        <el-button
+        size="mini"
+        type="danger"
+        @click="handleDelete(scope.$index, scope.row)"
+        >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <div class="block">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="100"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="40"
-      >
-      </el-pagination>
+
+       <div class="btn_box" style="margin-top: 20px">
+         没有提交成果
     </div>
   </div>
 </template>
@@ -60,9 +45,9 @@ export default {
         { index: "1", prop: "capter_stuNum", label: "队长学号" },
         { index: "2", prop: "aim_school", label: "目标学校" },
         { index: "3", prop: "phoneNum", label: "电话" },
-        // { index: "4", prop: "inDate", label: "报名时间" },
+        { index: "4", prop: "inDate", label: "报名时间" },
+        { index: "4", prop: "grades", label: "评定分数" },
 
-        
       ],
       tableData: [
         {
@@ -71,13 +56,7 @@ export default {
           aim_school: "重庆中学",
           phoneNum: "14444442232323",
           inDate: "2016-05-03",
-        },
-        {
-          capter_name: "王小虎",
-          capter_stuNum: "2018214294",
-          aim_school: "重庆中学",
-          phoneNum: "14444442232323",
-          inDate: "2016-05-03",
+          grades: "--",
 
         },
         {
@@ -86,6 +65,7 @@ export default {
           aim_school: "重庆中学",
           phoneNum: "14444442232323",
           inDate: "2016-05-03",
+          grades: "--",
 
         },
         {
@@ -94,6 +74,17 @@ export default {
           aim_school: "重庆中学",
           phoneNum: "14444442232323",
           inDate: "2016-05-03",
+          grades: "--",
+
+        },
+        {
+          capter_name: "王小虎",
+          capter_stuNum: "2018214294",
+          aim_school: "重庆中学",
+          phoneNum: "14444442232323",
+          inDate: "2016-05-03",
+          grades: "--",
+
         },
       ],
       multipleSelection: [],
@@ -116,13 +107,12 @@ export default {
   },
 };
 </script>
-
 <style lang="less" scoped>
-.btn_box {
+.btn_box{
   display: flex;
   justify-content: start;
 }
-.find_input {
+.find_input{
   margin-left: 10px;
   width: 180px;
 }

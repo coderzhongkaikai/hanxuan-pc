@@ -2,10 +2,11 @@
   <div>
     <el-container>
       <el-aside width="auto">
-        <div class="title_name">
-          <img src="../assets/logo.png" />
-        </div>
+          <div class="title_name" style="padding:20px" v-if="!isCollapse">
+          <img  src="../assets/logo.png" />
+          </div>
         <el-col :span="12">
+       
           <el-menu
             default-active="2"
             class="el-menu-vertical-demo"
@@ -13,7 +14,7 @@
             @open="handleOpen"
             @close="handleClose"
             router="true"
-
+            style="height:100vh;border-right: none;"
           >
             <el-menu-item index="/familyer">
               <i class="el-icon-document"></i>
@@ -36,19 +37,31 @@
               <i class="el-icon-setting"></i>
               <span slot="title">权限管理</span>
             </el-menu-item>
+
           </el-menu>
+
         </el-col>
+       
       </el-aside>
       <el-container>
         <el-header>
-          <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-            <el-radio-button :label="false"
-              ><i class="el-icon-s-operation"></i
-            ></el-radio-button>
-            <el-radio-button :label="true">收起</el-radio-button>
+          <el-radio-group v-model="isCollapse">
+              <div class="toggleSideBar" @click="toggleSideBar">
+              <i class="el-icon-s-operation"            
+              style="transition: transform .5s;"
+              :class="isCollapse ? 'rotated' : 'rotate'"></i>
+              </div>
+            <!-- <el-radio-button :label="false">
+              <i class="el-icon-s-operation"></i>
+            </el-radio-button>
+            <el-radio-button :label="true">收起</el-radio-button> -->
           </el-radio-group>
         </el-header>
-        <el-main>
+          <div id="tags-view-container" class="tags-view-container">
+
+           </div>
+
+        <el-main class="main">
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -77,6 +90,9 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    toggleSideBar(){
+      this.isCollapse=!this.isCollapse
+    }
   },
 };
 </script>
@@ -85,22 +101,46 @@ export default {
 .box {
   width: 100vw;
   height: 100vh;
+  
 }
-.title_name {
-  display: flex;
-  justify-content: center;
+.title_name,img{
+  width: 100px;
+  height: 100px;
 }
-.title_name img {
-  width: 120px;
-  height: 120px;
+.left_layout{
+  height: 100vh;
+  position: relative;
+}
+.rotated {
+  transform: rotate(90deg);
+}
+.rotate {
+  transform: rotate(0deg);
+}
+.main{
+  border:solid 1px #e6e6e6;
+
 }
 .el-header {
-  background-color: #b3c0d1;
+    border-bottom: 1px solid #d8dce5;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
   color: #333;
   line-height: 60px;
 }
 
 .el-aside {
   color: #333;
+}
+.toggleSideBar {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+  font-size: 25px;
+  color: gray;
+}
+
+.toggleSideBar.is-active {
+  transform: rotate(180deg);
 }
 </style>

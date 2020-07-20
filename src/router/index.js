@@ -6,7 +6,7 @@ import Layout from '../views/Layout.vue'
 import Permission from '../views/Permission.vue'
 import submitInfo from '../views/hanxuan/submitInfo.vue'
 import teamInfo from '../views/hanxuan/teamInfo.vue'
-
+import detail from '../views/detail.vue'
 
 Vue.use(VueRouter)
 
@@ -74,7 +74,10 @@ Vue.use(VueRouter)
         path: 'index2',
         component: submitInfo
     },
-  ]
+    {
+      path: 'detail',
+      component: detail
+  }]
 },
 ]
 
